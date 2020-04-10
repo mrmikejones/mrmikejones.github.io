@@ -1,0 +1,35 @@
+h1, h2, h3, h4, h5, h6, p, li, a, footer {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+p.date {
+    font-size: small;
+    font-style: italic;
+}
+
+h1.title {
+    margin-bottom: 0;
+}
+
+footer {
+    font-size: small;
+}
+
+ul.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    font-size: smaller;
+}
+
+canvas {
+	border: 2px solid black;
+	background-color: black;
+}
+
+video {
+	display: none;
+}
