@@ -1,4 +1,4 @@
-h1, h2, h3, h4, h5, h6, p, li, a, footer {
+h1, h2, h3, h4, h5, h6, p, li, a, footer, blockquote {
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
@@ -32,4 +32,8 @@ canvas {
 
 video {
 	display: none;
+}
+
+blockquote {
+  font-style: italic;
 }
