@@ -46,6 +46,11 @@ note_references {
 	margin: 1em;
 }
 
+li.note_link {
+    font-style: italic;
+	font-variant:small-caps;
+}
+
 canvas {
 	border: 2px solid black;
 	background-color: black;
