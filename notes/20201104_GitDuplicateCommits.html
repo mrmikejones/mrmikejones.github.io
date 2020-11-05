@@ -32,19 +32,24 @@
   </p>
   <p>
 	The rebase doesn't change the existing commit, it actually copies the
-	commit. This means there is a new hash, and an entirely new commit.
+	commit. This means there is now an entirely new commit in the history when
+	compared to trunk.
   </p>
   <p>
-	Once there are duplicate commits in trunk, they are there to stay. Doing a
-	rebase of trunk, and dropping the duplicate commits might work but it is
-	risky. My preference would be to have a messy commit history over using rebase
-	on trunk, re-writing history and the potential for creating a lot more
+	When merging branch back to trunk, Git needs to resolve the difference in
+	history between trunk and the branch. The resolution is to add all commits
+	from the new commit onwards onto the end of trunk's commit history.
+  </p>
+  <p>
+	Once the duplicate commits are in trunk they are there to stay. Doing a
+	rebase of trunk, and dropping the duplicate commits, might work but it is
+	risky. My preference would be to have a messy commit history. Doing a rebase
+	on trunk and re-writing history has the potential to create a lot more
 	problems.
   </p>
   <p>
-	This is the reason that rebase comes with the warning to not rebase commits
-	that someone else might have. In this case, someone else <i>did</i> have the
-	commits - trunk. 
+	Rebase comes with the warning to not rebase commits that someone else might
+	have. In this case, someone else <i>did</i> have the commits - trunk. 
   </p>
   <p>
 	<note_references>
