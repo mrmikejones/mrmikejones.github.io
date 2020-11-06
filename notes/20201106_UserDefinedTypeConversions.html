@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mike</title>
+    <link rel="stylesheet" href="../styles.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<header>
+    <h1 class=title>Notes</h1>
+    <p class=date>November 6th, 2020</p>
+    <nav>
+        <ul class=nav>
+          <li><a href="../index.html">../index</a></li>
+		  <li><a href="notes.html">notes</a></li>
+        </ul>
+    </nav>
+	<note_tags>
+	  <ul class="note_tags">
+		<li class="note_tags"><a href="tags/cpp.html">#cpp</a></li>
+	  </ul>
+	</note_tags>
+</header>
+
+<body>
+  <h2>User Defined Type Conversions</h2>
+  <p>
+	Useful when dealing with API's that expect data in one type but
+	the code base is using another.
+  </p>
+  <p>
+	For example, using an API that expects a 3d	vector as one type whilst using
+	a different type throughout the rest of the	code base.
+  </p>
+  <p>
+	<script src="https://gist.github.com/mrmikejones/4ff1790a971df4f3856864de8ab49470.js"></script>
+  </p>
+  <p>
+	My example inherits and adds user defined type conversion to the derived
+	class. This is because I wanted to keep using the parent type in the code and add
+	conversion to and from another type.
+  </p>
+  <p>
+	This <a href="https://stackoverflow.com/a/16654566">Stack Overflow answer</a> uses a
+	templated wrapper to support conversion.
+  </p>
+  <p>
+	<note_references>
+	  <ul>
+		<li><a href="https://stackoverflow.com/questions/2999506/non-member-conversion-functions-casting-different-types-e-g-directx-vector-to">Stack
+		Overflow : Non-member conversion functions; Casting different types,
+			e.g. DirectX vector to OpenGL vector</a></li>
+		<li><a href="https://docs.microsoft.com/en-us/cpp/cpp/user-defined-type-conversions-cpp?view=msvc-160">Microsoft
+			: User-Defined Type Conversions (C++)</a></li>
+		<li><a href="https://www.cplusplus.com/doc/tutorial/typecasting/">Cplusplus.com
+		: Type Conversions</a></li>
+	  </ul>
+	</note_references>
+  </p>
+</body>
+
+<footer>
+  <hr>
+  Copyright &copy; Mike Jones 2020. All rights reserved.
+</footer>
+
+</html>
