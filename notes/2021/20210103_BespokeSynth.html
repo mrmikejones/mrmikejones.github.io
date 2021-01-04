@@ -39,6 +39,12 @@
       JUCE is used for the audio backend. <a href="https://github.com/awwbees/BespokeSynth/blob/master/Source/ModularSynth.h">ModularSynth.h</a> is the main synth. The support for Python scripting is cool, and something to learn from.
   </p>
   <p>
+      The main audio render happens in <code><a href="https://github.com/awwbees/BespokeSynth/blob/c0ffb8bfe8b3de58aa5ee00dcd1e2bc381e23aa6/Source/ModularSynth.cpp#L1177">ModularSynth::AudioOut</a></code>  One neat feature is the audio graph can be changed on the fly. This can be complicated as the audio runs on a separate thread, and is real time constrained. Bespoke supports live updates to the audio graph by using a Mutex. Ideally a mutex on the audio thread would be avoided, but in this case it's working well enough by the looks of it.
+  </p>
+  <p>
+      The audio graph is sorted in <code><a href="https://github.com/awwbees/BespokeSynth/blob/c0ffb8bfe8b3de58aa5ee00dcd1e2bc381e23aa6/Source/ModularSynth.cpp#L1314">ModularSynth::ArrangeAudioSourceDependencies()</a></code>
+  </p>
+  <p>
 	<note_references>
 	  <ul>
 		<li><a href="https://github.com/awwbees/BespokeSynth">GitHub
