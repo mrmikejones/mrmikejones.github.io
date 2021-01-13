@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Mike</title>
     <link rel="stylesheet" href="../../styles.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <header>
@@ -12,67 +13,73 @@
     <p class=date>December 29th, 2020</p>
     <nav>
         <ul class=nav>
-          <li><a href="../../index.html">../../index</a></li>
-		  <li><a href="../notes.html">../notes</a></li>
+            <li><a href="../../index.html">../../index</a></li>
+            <li><a href="../notes.html">../notes</a></li>
         </ul>
     </nav>
-	<note_tags>
-	  <ul class="note_tags">
-        <li class="note_tags"><a href="../tags/daisy.html">#daisy</a></li>
-        <li class="note_tags"><a href="../tags/2020.html">#2020</a></li>
-	  </ul>
-	</note_tags>
+    <note_tags>
+        <ul class="note_tags">
+            <li class="note_tags"><a href="../tags/daisy.html">#daisy</a></li>
+            <li class="note_tags"><a href="../tags/2020.html">#2020</a></li>
+        </ul>
+    </note_tags>
 </header>
 
 <body>
-  <h2>Daisy - Debugging</h2>
-  <p>
-	I use an STLink to connect to the Daisy, and VSCode to debug. I followed
-	the instructions here: <a href="https://forum.electro-smith.com/t/howto-vs-code-debugging-with-st-link-jtag/357">Daisy Forum - HowTo: VS Code debugging with St-Link JTAG</a>.
-  </p>
-  <p>
-	I use
-	an <a href="https://www.mouser.co.uk/ProductDetail/stmicroelectronics/st-link-v2/?qs=H4BOwPtf9MC1sDQ8j3cy4w==&countrycode=GB&currencycode=GBP">STLink
-	V2</a>, and
-	a <a href="https://www.mouser.co.uk/ProductDetail/olimex-ltd/arm-jtag-20-10/?qs=DUTFWDROaMbVQp3WoAdijQ==&countrycode=GB&currencycode=GBP">ARM-JTAG-20-10</a>
-	cable converter. Pop the cover off the connection on the Daisy. Make sure
-	the connector is in the right orientation (white mark on Daisy and red cable
-	should be next to eachother).
-  <p>
-	<ol>
-	  <li>Install the <a href="https://www.st.com/en/development-tools/stsw-link009.html#">STLink driver</a></li>
-	  <li>Install <a href="https://gnutoolchains.com/arm-eabi/openocd/">OpenOCD</a></li>
-	  <li>Download <a href="https://raw.githubusercontent.com/posborne/cmsis-svd/master/data/STMicro/STM32H750x.svd">stm32H750x.svd</a>
-	  from <a href="https://github.com/posborne/cmsis-svd">GitHub -
-		  posborne/cmsis-svd</a></li>
-	  <li>Install
-	  the <a href="https://github.com/Marus/cortex-debug">Cortex-Debug VSCode
-		  extension</a></li>
-	  <li>Setup the VSCode launch.json as
-	  per <a href="https://forum.electro-smith.com/t/howto-vs-code-debugging-with-st-link-jtag/357">the
-	  example here</a></li>
-	</ol>
-	<p>
-	The ST Link does not power the Daisy, so the USB cable also needs to be connected.
-  </p>
-  <p>
-	Remember to build in Debug mode, otherwise you will be debugging the
-	optimised version of the code (doable but more painful). Debug needs to be
-	set in each Makefile separatly.
-  </p>
-  </p>
-  <p>
-	<note_references>
-	  <ul>
-		<li><a href="https://forum.electro-smith.com/t/howto-vs-code-debugging-with-st-link-jtag/357">Daisy Forum - HowTo: VS Code debugging with St-Link JTAG</a></li>
-	  </ul>
-	</note_references>
-  </p>
+    <h2 class=note_title>Daisy - Debugging</h2>
+    <p>
+        I use an STLink to connect to the Daisy, and VSCode to debug. I followed
+        the instructions here: <a
+            href="https://forum.electro-smith.com/t/howto-vs-code-debugging-with-st-link-jtag/357">Daisy Forum - HowTo:
+            VS Code debugging with St-Link JTAG</a>.
+    </p>
+    <p>
+        I use
+        an <a
+            href="https://www.mouser.co.uk/ProductDetail/stmicroelectronics/st-link-v2/?qs=H4BOwPtf9MC1sDQ8j3cy4w==&countrycode=GB&currencycode=GBP">STLink
+            V2</a>, and
+        a <a
+            href="https://www.mouser.co.uk/ProductDetail/olimex-ltd/arm-jtag-20-10/?qs=DUTFWDROaMbVQp3WoAdijQ==&countrycode=GB&currencycode=GBP">ARM-JTAG-20-10</a>
+        cable converter. Pop the cover off the connection on the Daisy. Make sure
+        the connector is in the right orientation (white mark on Daisy and red cable
+        should be next to eachother).
+    <p>
+    <ol>
+        <li>Install the <a href="https://www.st.com/en/development-tools/stsw-link009.html#">STLink driver</a></li>
+        <li>Install <a href="https://gnutoolchains.com/arm-eabi/openocd/">OpenOCD</a></li>
+        <li>Download <a
+                href="https://raw.githubusercontent.com/posborne/cmsis-svd/master/data/STMicro/STM32H750x.svd">stm32H750x.svd</a>
+            from <a href="https://github.com/posborne/cmsis-svd">GitHub -
+                posborne/cmsis-svd</a></li>
+        <li>Install
+            the <a href="https://github.com/Marus/cortex-debug">Cortex-Debug VSCode
+                extension</a></li>
+        <li>Setup the VSCode launch.json as
+            per <a href="https://forum.electro-smith.com/t/howto-vs-code-debugging-with-st-link-jtag/357">the
+                example here</a></li>
+    </ol>
+    <p>
+        The ST Link does not power the Daisy, so the USB cable also needs to be connected.
+    </p>
+    <p>
+        Remember to build in Debug mode, otherwise you will be debugging the
+        optimised version of the code (doable but more painful). Debug needs to be
+        set in each Makefile separatly.
+    </p>
+    </p>
+    <p>
+        <note_references>
+            <ul>
+                <li><a href="https://forum.electro-smith.com/t/howto-vs-code-debugging-with-st-link-jtag/357">Daisy
+                        Forum - HowTo: VS Code debugging with St-Link JTAG</a></li>
+            </ul>
+        </note_references>
+    </p>
 </body>
 
 <footer>
-  <hr>
-  Copyright &copy; Mike Jones 2021. All rights reserved.
+    <hr>
+    Copyright &copy; Mike Jones 2021. All rights reserved.
 </footer>
 
 </html>
