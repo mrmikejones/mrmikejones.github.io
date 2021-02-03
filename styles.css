@@ -53,6 +53,11 @@ li.note_link {
 	font-variant:small-caps;
 }
 
+a.note_backlink {
+    font-style: italic;
+	font-variant:small-caps;
+}
+
 canvas {
 	border: 2px solid black;
 	background-color: black;
