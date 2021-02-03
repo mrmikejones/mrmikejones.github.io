@@ -39,7 +39,7 @@ li.note_tags {
     font-size: smaller;
 }
 
-note_references {
+div.note_references {
 	margin: 1em;
 }
 
