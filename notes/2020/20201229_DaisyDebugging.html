@@ -1,55 +1,57 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
-<meta charset="utf-8"/>
-<title>
+    <meta charset="utf-8" />
+    <title>
         Mike
     </title>
-<link href="../../styles.css" rel="stylesheet"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="../../styles.css" rel="stylesheet" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
 </head>
+
 <body>
-<header>
-<h1 class="title">
+    <header>
+        <h1 class="title">
             Notes
         </h1>
-<p class="date" id="note_date">
+        <p class="date" id="note_date">
             December 29th, 2020
         </p>
-<nav>
-<ul class="nav">
-<li>
-<a href="../../index.html">
+        <nav>
+            <ul class="nav">
+                <li>
+                    <a href="../../index.html">
                         ../../index
                     </a>
-</li>
-<li>
-<a href="../notes.html">
+                </li>
+                <li>
+                    <a href="../notes.html">
                         ../notes
                     </a>
-</li>
-</ul>
-</nav>
-<div class="note_tags">
-<ul class="note_tags" id="note_tags">
-<li class="note_tags">
-<a href="../tags/daisy.html">
+                </li>
+            </ul>
+        </nav>
+        <div class="note_tags">
+            <ul class="note_tags" id="note_tags">
+                <li class="note_tags">
+                    <a href="../tags/daisy.html">
                         #daisy
                     </a>
-</li>
-<li class="note_tags">
-<a href="../tags/2020.html" id="note_year_tag">
+                </li>
+                <li class="note_tags">
+                    <a href="../tags/2020.html" id="note_year_tag">
                         #2020
                     </a>
-</li>
-</ul>
-</div>
-</header>
-<h2 class="note_title" id="note_title">
+                </li>
+            </ul>
+        </div>
+    </header>
+    <h2 class="note_title" id="note_title">
         Daisy - Debugging
     </h2>
-<p>
+    <p>
         I use an STLink to connect to the Daisy, and VSCode to debug. I followed
         the instructions here:
         <a href="https://forum.electro-smith.com/t/howto-vs-code-debugging-with-st-link-jtag/357">
@@ -58,36 +60,38 @@
         </a>
         .
     </p>
-<p>
+    <p>
         I use
         an
-        <a href="https://www.mouser.co.uk/ProductDetail/stmicroelectronics/st-link-v2/?qs=H4BOwPtf9MC1sDQ8j3cy4w==&amp;countrycode=GBÂ¤cycode=GBP">
+        <a
+            href="https://www.mouser.co.uk/ProductDetail/stmicroelectronics/st-link-v2/?qs=H4BOwPtf9MC1sDQ8j3cy4w==&amp;countrycode=GBÂ¤cycode=GBP">
             STLink
             V2
         </a>
         , and
         a
-        <a href="https://www.mouser.co.uk/ProductDetail/olimex-ltd/arm-jtag-20-10/?qs=DUTFWDROaMbVQp3WoAdijQ==&amp;countrycode=GBÂ¤cycode=GBP">
+        <a
+            href="https://www.mouser.co.uk/ProductDetail/olimex-ltd/arm-jtag-20-10/?qs=DUTFWDROaMbVQp3WoAdijQ==&amp;countrycode=GBÂ¤cycode=GBP">
             ARM-JTAG-20-10
         </a>
         cable converter. Pop the cover off the connection on the Daisy. Make sure
         the connector is in the right orientation (white mark on Daisy and red cable
         should be next to eachother).
     <p>
-<ol>
-<li>
+    <ol>
+        <li>
             Install the
             <a href="https://www.st.com/en/development-tools/stsw-link009.html#">
                 STLink driver
             </a>
-</li>
-<li>
+        </li>
+        <li>
             Install
             <a href="https://gnutoolchains.com/arm-eabi/openocd/">
                 OpenOCD
             </a>
-</li>
-<li>
+        </li>
+        <li>
             Download
             <a href="https://raw.githubusercontent.com/posborne/cmsis-svd/master/data/STMicro/STM32H750x.svd">
                 stm32H750x.svd
@@ -97,49 +101,50 @@
                 GitHub -
                 posborne/cmsis-svd
             </a>
-</li>
-<li>
+        </li>
+        <li>
             Install
             the
             <a href="https://github.com/Marus/cortex-debug">
                 Cortex-Debug VSCode
                 extension
             </a>
-</li>
-<li>
+        </li>
+        <li>
             Setup the VSCode launch.json as
             per
             <a href="https://forum.electro-smith.com/t/howto-vs-code-debugging-with-st-link-jtag/357">
                 the
                 example here
             </a>
-</li>
-</ol>
-<p>
+        </li>
+    </ol>
+    <p>
         The ST Link does not power the Daisy, so the USB cable also needs to be connected.
     </p>
-<p>
+    <p>
         Remember to build in Debug mode, otherwise you will be debugging the
         optimised version of the code (doable but more painful). Debug needs to be
         set in each Makefile separatly.
     </p>
-</p>
-<div class="note_references">
-<ul id="note_references">
-<li>
-<a href="https://forum.electro-smith.com/t/howto-vs-code-debugging-with-st-link-jtag/357">
+    </p>
+    <div class="note_references">
+        <ul id="note_references">
+            <li>
+                <a href="https://forum.electro-smith.com/t/howto-vs-code-debugging-with-st-link-jtag/357">
                     Daisy
                     Forum - HowTo: VS Code debugging with St-Link JTAG
                 </a>
-</li>
-</ul>
-</div>
-<footer>
-<hr/>
-<p id="copyright">
-            Copyright © Mike Jones 2021. All rights reserved.
+            </li>
+        </ul>
+    </div>
+    <footer>
+        <hr />
+        <p id="copyright">
+            Copyright &copy; Mike Jones 2021. All rights reserved.
         </p>
-</footer>
-</p>
+    </footer>
+    </p>
 </body>
+
 </html>
