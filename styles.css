@@ -53,7 +53,7 @@ li.note_link {
 	font-variant:small-caps;
 }
 
-a.note_backlink {
+li.note_backlink {
     font-style: italic;
 	font-variant:small-caps;
 }
