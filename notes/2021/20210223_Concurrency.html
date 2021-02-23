@@ -14,7 +14,7 @@
     Notes
    </h1>
    <p class="date" id="note_date">
-    February 19th, 2021
+    February 23rd, 2021
    </p>
    <nav>
     <ul class="nav">
@@ -46,39 +46,21 @@
    </div>
   </header>
   <h2 class="note_title" id="note_title">
-   Optimisation
+   Concurrency
   </h2>
   <p>
-   I've been reading up a lot on optimisation lately. This page is to capture resources and things I learn before
-        they are forgotton and lost to the ether.
-  </p>
-  <h3>
-   Performance Analysis Tuning Modern CPUs
-  </h3>
-  <p>
-   I bought the printed version of this off Amazon. There is a free pdf available too.
-  </p>
-  <p>
-   Good introduction to optimisation. I don't use Linux or Intel VTune so some bits were a bit wasted on me.
-  </p>
-  <p>
-   I need to go through the book again, and properly take in some of the sections.
-  </p>
-  <p>
-   Dennis also has a website -
-   <a href="easyperf.net">
-    easyperf
+   Closely related to
+   <a class="note_link" href="20210219_Optimisation.html">
+    Optimisation
    </a>
-   . Lots of posts worth reading, a lot of this seems
-        to be then incorportated into the book.
-  </p>
-  <p>
-   There is also a
-   <a href="https://easyperf.net/blog/2021/02/05/Performance-analysis-and-tuning-contest-4">
-    performance analysis
-            and tuning challenge
+   . Audio normally runs
+        on a separate thread. It is real time critical and has some pretty unique constraints.
+   <a href="http://www.rossbencina.com/code/real-time-audio-programming-101-time-waits-for-nothing">
+    Real-time
+            audio programming 101: time waits for nothing
    </a>
-   , looks interesting.
+   by Ross Bencina covers some of the challenges and issues
+        audio programmers face. His whole website is worth a browse and read.
   </p>
   <h3>
    What every systems programmer should know about concurrency
@@ -100,18 +82,23 @@
    I'm just getting started on this one. Bit more of a hefty read. Looks like this one has promise and will be a
         good read.
   </p>
+  <h3>
+   Read Copy Update
+  </h3>
+  <p>
+   LWN has some good articles on this. I'm quite interested in RCU.
+  </p>
+  <p>
+   <ul>
+    <li>
+     <a href="https://lwn.net/Articles/262464/">
+      What is RCU, Fundamentally?
+     </a>
+    </li>
+   </ul>
+  </p>
   <div class="note_references">
    <ul id="note_references">
-    <li>
-     <a href="https://www.amazon.co.uk/Performance-Analysis-Tuning-Modern-CPUs/dp/B08R6MTM7K">
-      Performance Analysis Tuning Modern CPUs
-     </a>
-    </li>
-    <li>
-     <a href="https://easyperf.net/">
-      easyperf
-     </a>
-    </li>
     <li>
      <a href="https://bitbashing.io/concurrency-primer.html">
       BitBashing.io - What every systems programmer
@@ -124,9 +111,36 @@
                     Parallel Programming Hard, And, If So, What Can You Do About It?
      </a>
     </li>
-    <li class="note_backlink">
-     <a href="20210223_Concurrency.html">
-      Concurrency
+    <li>
+     <a href="https://docs.microsoft.com/en-gb/windows/win32/dxtecharts/lockless-programming">
+      Microsoft -
+                    Lockless
+                    Programming Considerations for Xbox 360 and Microsoft Windows
+     </a>
+    </li>
+    <li>
+     <a href="https://preshing.com/20120612/an-introduction-to-lock-free-programming/">
+      Preshing on
+                    Programming - An Introduction to Lock-Free Programming
+     </a>
+    </li>
+    <li>
+     <a href="https://bartoszmilewski.com/2013/12/10/functional-data-structures-and-concurrency-in-c/">
+      Bartosz
+                    Milewski's Programming Cafe - Functional Data Structures and Concurrency in C++
+     </a>
+    </li>
+    <li>
+     <a href="https://timur.audio/using-locks-in-real-time-audio-processing-safely">
+      Timur.Audio - Using locks
+                    in
+                    real-time audio processing, safely
+     </a>
+    </li>
+    <li>
+     <a href="https://www.cs.cmu.edu/~410-s05/lectures/L31_LockFree.pdf">
+      Geoff Langdale - Lock-Free
+                    Programming
      </a>
     </li>
    </ul>
