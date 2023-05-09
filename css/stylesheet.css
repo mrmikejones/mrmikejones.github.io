@@ -5,3 +5,10 @@ h1, h2, h3, h4, h5, h6, p, li, a, footer, blockquote {
 blockquote {
   font-style: italic;
 }
+
+/*
+ * https://stackoverflow.com/a/7533664/2207123
+ * https://stackoverflow.com/a/38781315/2207123
+*/
+.timestamp { color: black; font-family: monospace, monospace; }
+
