@@ -1,7 +1,6 @@
 h1, h2, h3, h4, h5, h6, p, li, a, footer, blockquote {
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     margin: auto;
-    text-align: center;
 }
 
 blockquote {
@@ -14,3 +13,4 @@ blockquote {
 */
 .timestamp { color: black; font-family: monospace; }
 
+.mj_image { text-align: center; }
