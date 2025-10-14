@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- 2023-06-06 Tue 09:30 -->
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="../css/stylesheet.css" />
+  <meta name="author" content="Mike Jones" />
+  <title>mj - Fast Random Noise</title>
+</head>
+<body>
+
+<div class="mj_image">
+<p>
+  <a href="../index.html" width="120px" height="115px" alt="mj"><img src="../data/mj.png" alt="mj" width="120px" height="115px" /></a>
+</p>
+</div>
+
+<h1>Fast Random Noise</h1>
+<p>
+  Decent talk by Roth
+  Michaels, <a href="https://youtu.be/N2AM6ixC6LI?si=ME0IMQ9zOzR2rvuK">ADC 2022
+  Fast, High-quality Pseudo-random Numbers for Audio Developers</a>. There is
+  some example code at the end too.
+</p>
+<p>
+  Use xoshiro128+ for floating point generation. There is a reference
+  implementation <a href="https://prng.di.unimi.it/xoshiro128plus.c">here</a>.
+</p>
+<p>
+  The conversion of uint64_t to float is a bit of a fiddle to get your head
+  around, but it's cool to understand.
+</p>
+<p>
+  I like that this is pretty straightforward to implement.
+</p>
+<hr />
+<ul>
+  <li><a href="https://vigna.di.unimi.it/papers.php#BlVSLPNG">Scrambled Linear Pseudorandom Number Generators</a></li>
+  <li>Created - 20251014</li>
+  <li>Updated - 20251014</li>
+</ul>
+</body>
+</html>
