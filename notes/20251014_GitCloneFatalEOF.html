@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="../css/stylesheet.css" />
+  <meta name="author" content="Mike Jones" />
+  <title>mj</title>
+</head>
+<body>
+
+<div class="mj_image">
+<p>
+  <a href="../index.html" width="120px" height="115px" alt="mj"><img src="../data/mj.png" alt="mj" width="120px" height="115px" /></a>
+</p>
+</div>
+
+<h1>git clone - fatal eof</h1>
+<p>
+  This is a super annoying problem that pops up when I am cloning large
+  repositories and my connection is a bit slow.
+</p>
+<p>
+  Part way through the clone git will fail.
+  <pre>
+    <samp>
+      FATAL ERROR: Remote side unexpectedly closed network connection
+      fetch-pack: unexpected disconnect while reading sideband packet
+      fatal: early EOF
+      fatal: fetch-pack: invalid index-pack output
+    </samp>
+  </pre>
+</p>
+<p>
+  <a href="https://stackoverflow.com/a/22317479">This fix on StackOverflow</a>
+  somewhat works for me if I do a set of fetch commands gradually increasing the
+  checkout depth.
+  <pre>
+    <code>
+      git clone --depth 1 $REPO_URI$
+      git fetch --deepen=32
+      git fetch --deepen=32
+      git fetch --deepen=32
+      git fetch --deepen=32
+      // etc. until an attempt at unshallow succeeds.
+      // experiment with the depth value (32/64/128/256/etc).
+      git fetch --unshallow
+    </code>
+  </pre>
+</p>
+<hr />
+<ul>
+  <li><a href="https://git-scm.com/docs/git-fetch">git-fetch</a></li>
+  <li>Created - 20251014</li>
+  <li>Updated - 20251014</li>
+</ul>
+</body>
+</html>
