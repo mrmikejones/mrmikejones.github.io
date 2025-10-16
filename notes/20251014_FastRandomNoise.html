@@ -24,21 +24,100 @@
   some example code at the end too.
 </p>
 <p>
-  Use xoshiro128+ for floating point generation. There is a reference
+  I like that it is pretty straightforward to implement.
+</p>
+<p>
+  The authors recommend xoshiro128+ for floating point generation. There is a reference
   implementation <a href="https://prng.di.unimi.it/xoshiro128plus.c">here</a>.
 </p>
 <p>
-  The conversion of uint64_t to float is a bit of a fiddle to get your head
-  around, but it's cool to understand.
+  <pre>
+    <code>
+static inline uint32_t rotl(const uint32_t x, int k) {
+    return (x << k) | (x >> (32 - k));
+}
+
+
+static uint32_t s[4];
+
+uint32_t next(void) {
+    const uint32_t result = s[0] + s[3];
+
+    const uint32_t t = s[1] << 9;
+
+    s[2] ^= s[0];
+    s[3] ^= s[1];
+    s[1] ^= s[2];
+    s[0] ^= s[3];
+
+    s[2] ^= t;
+
+    s[3] = rotl(s[3], 11);
+
+    return result;
+}
+    </code>
+  </pre>
 </p>
 <p>
-  I like that this is pretty straightforward to implement.
+  The conversion of uint64_t to a float (0 to 1) is a bit of a fiddle to get
+  your head around, but it is neat to understand.
+</p>
+<p>
+  <pre>
+    <code>
+/**
+* 1. Extract 32bits
+* 2. Drop the 8 bit mantissa
+* 3. Mutliply by float32 precision
+*/
+//|------ 1 -----|-- 2 --|---- 3 ----|
+((uint64_t >> 32u) >> 8) * 0x1.0p-24f;
+    </code>
+  </pre>
+</p>
+<p>
+  The seed should be initialised
+  using <a href="https://prng.di.unimi.it/splitmix64.c">SplitMix64</a>. Again
+  very straightforward to implement.
+</p>
+<p>
+  <pre>
+    <code>
+static uint64_t x; /* The state can be seeded with any value. */
+
+uint64_t next() {
+    uint64_t z = (x += 0x9e3779b97f4a7c15);
+    z = (z ^ (z >> 30)) * 0xbf58476d1ce4e5b9;
+    z = (z ^ (z >> 27)) * 0x94d049bb133111eb;
+    return z ^ (z >> 31);
+}
+    </code>
+  </pre>
+</p>
+<p>
+  That just leaves the SplitMix64 state to be initialised. I use std::random_device to
+  generate two uint32_t, and then bit shift to create a single uint64_t.
+</p>
+<p>
+  <pre>
+    <code>
+std::random_device rdev;
+
+uint64_t x = rdev();
+// Fill the upper 32 bits
+x <<= 32;
+// Fill the lower 32 bits
+x |= rdev();
+    </code>
+  </pre>
 </p>
 <hr />
 <ul>
   <li><a href="https://vigna.di.unimi.it/papers.php#BlVSLPNG">Scrambled Linear Pseudorandom Number Generators</a></li>
+  <li><a href="https://prng.di.unimi.it">A PRNG Shootout</a></li>
   <li>Created - 20251014</li>
-  <li>Updated - 20251014</li>
+  <li>Updated - 20251016</li>
 </ul>
 </body>
 </html>
