@@ -5,6 +5,9 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" type="text/css" href="../css/stylesheet.css" />
+  <link rel="stylesheet" href="../highlight/styles/default.min.css">
+  <script src="../highlight/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
   <meta name="author" content="Mike Jones" />
   <title>mj - Fast Random Noise</title>
 </head>
@@ -24,7 +27,8 @@
   some example code at the end too.
 </p>
 <p>
-  I like that it is pretty straightforward to implement.
+  I like that xoshiro is pretty straightforward to implement. There are code
+  examples, and you can understand what the code is doing.
 </p>
 <p>
   The authors recommend xoshiro128+ for floating point generation. There is a reference
@@ -60,7 +64,7 @@ uint32_t next(void) {
   </pre>
 </p>
 <p>
-  The conversion of uint64_t to a float (0 to 1) is a bit of a fiddle to get
+  The conversion of <code>uint64_t</code> to a <code>float</code> (0 to 1) is a bit of a fiddle to get
   your head around, but it is neat to understand.
 </p>
 <p>
@@ -96,8 +100,8 @@ uint64_t next() {
   </pre>
 </p>
 <p>
-  That just leaves the SplitMix64 state to be initialised. I use std::random_device to
-  generate two uint32_t, and then bit shift to create a single uint64_t.
+  That just leaves the SplitMix64 state to be initialised. I use <code>std::random_device</code> to
+  generate two <code>uint32_t</code>, and then bit shift to create a single <code>uint64_t</code>.
 </p>
 <p>
   <pre>
@@ -117,7 +121,7 @@ x |= rdev();
   <li><a href="https://vigna.di.unimi.it/papers.php#BlVSLPNG">Scrambled Linear Pseudorandom Number Generators</a></li>
   <li><a href="https://prng.di.unimi.it">A PRNG Shootout</a></li>
   <li>Created - 20251014</li>
-  <li>Updated - 20251016</li>
+  <li>Updated - 20251017</li>
 </ul>
 </body>
 </html>
