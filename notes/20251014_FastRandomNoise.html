@@ -34,34 +34,30 @@
   a <a href="https://vigna.di.unimi.it/papers.php#BlVSLPNG">paper</a>.
 </p>
 <p>
-  The authors recommend xoshiro128+ for floating point generation. There is a reference
-  implementation <a href="https://prng.di.unimi.it/xoshiro128plus.c">here</a>.
+  The authors recommend xorshiro128+ as suitable for floating point
+  generation. There is a reference
+  implementation <a href="https://prng.di.unimi.it/xoroshiro128plus.c">here</a>.
 </p>
 <p>
   <pre>
     <code>
-static inline uint32_t rotl(const uint32_t x, int k) {
-    return (x << k) | (x >> (32 - k));
+static inline uint64_t rotl(const uint64_t x, int k) {
+	return (x << k) | (x >> (64 - k));
 }
 
 
-static uint32_t s[4];
+static uint64_t s[2];
 
-uint32_t next(void) {
-    const uint32_t result = s[0] + s[3];
+uint64_t next(void) {
+	const uint64_t s0 = s[0];
+	uint64_t s1 = s[1];
+	const uint64_t result = s0 + s1;
 
-    const uint32_t t = s[1] << 9;
+	s1 ^= s0;
+	s[0] = rotl(s0, 24) ^ s1 ^ (s1 << 16); // a, b
+	s[1] = rotl(s1, 37); // c
 
-    s[2] ^= s[0];
-    s[3] ^= s[1];
-    s[1] ^= s[2];
-    s[0] ^= s[3];
-
-    s[2] ^= t;
-
-    s[3] = rotl(s[3], 11);
-
-    return result;
+	return result;
 }
     </code>
   </pre>
