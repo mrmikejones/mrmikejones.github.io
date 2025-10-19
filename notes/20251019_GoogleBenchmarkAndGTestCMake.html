@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="../css/stylesheet.css" />
+  <link rel="stylesheet" href="../highlight/styles/mj.css">
+  <script src="../highlight/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <meta name="author" content="Mike Jones" />
+  <title>mj</title>
+</head>
+<body>
+
+<div class="mj_image">
+<p>
+  <a href="../index.html" width="120px" height="115px" alt="mj"><img src="../data/mj.png" alt="mj" width="120px" height="115px" /></a>
+</p>
+</div>
+
+<h1 class="title">Using Google Benchmark and GTest in a CMake Project</h1>
+<small>20251019</small>
+<p>
+  <a href="https://tylerseanrau.github.io/BenchAndTest/">This</a> is a a neat
+  way to use <a href="https://github.com/google/benchmark">Google Benchmark</a> and <a href="https://github.com/google/googletest">GTest</a> in a CMake project.
+</p>
+<p>
+  Rember to update the version numbers.
+</p>
+<p>
+  <pre>
+    <code>
+include(FetchContent)
+
+set(BENCHMARK_ENABLE_TESTING off)
+
+FetchContent_Declare(
+  googletest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG v1.17.0
+)
+
+FetchContent_Declare(
+  googlebenchmark
+    GIT_REPOSITORY https://github.com/google/benchmark.git
+    GIT_TAG v1.9.4
+)
+
+FetchContent_MakeAvailable(
+  googletest
+  googlebenchmark
+)
+
+enable_testing()
+
+add_executable(source_code_test)
+target_sources(
+  source_code_test
+  PRIVATE
+    source_code.test.cpp
+)
+target_link_libraries(
+  source_code_test
+  PRIVATE
+    gtest_main
+    source_code
+)
+
+include(GoogleTest)
+gtest_discover_tests(source_code_test)
+
+add_executable(source_code_benchmark)
+target_sources(
+  source_code_benchmark
+  PRIVATE
+    source_code.benchmark.cpp
+)
+
+target_link_libraries(
+  source_code_benchmark
+  PRIVATE
+    source_code
+    pthread
+    benchmark::benchmark
+    benchmark::benchmark_main
+)
+    </code>
+  </pre>
+</p>
+<hr />
+</body>
+</html>
