@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="../css/stylesheet.css" />
+  <link rel="stylesheet" href="../highlight/styles/mj.css">
+  <script src="../highlight/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <meta name="author" content="Mike Jones" />
+  <title>mj</title>
+</head>
+<body>
+
+<div class="mj_image">
+<p>
+  <a href="../index.html" width="120px" height="115px" alt="mj"><img src="../data/mj.png" alt="mj" width="120px" height="115px" /></a>
+</p>
+</div>
+
+<h1 class="title">Pink Noise</h1>
+<small>20251019</small>
+<p>
+  I became interested in this after messing around with <a href="20251014_FastRandomNoise.html">using xoshiro to
+  generate white noise</a>.
+</p>
+<p>
+  Pink noise has a 1/f falloff. It is described as a more natural sounding
+  noise, similar to a waterfall.
+</p>
+<p>
+  <a href="https://www.firstpr.com.au/dsp/pink-noise/">DSP generation of Pink (1/f) Noise</a> is the most thourough
+  information I could find.
+</p>
+<p>
+  There are 2 main ways to generate pink noise.
+  <ol>
+    <li>Applying a pinking filter to white noise</li>
+    <li>Using the Voss-McCartney algorithm</li>
+  </ol>
+</p>
+<p>
+  I am focussing on the Voss-McCartney algorithm because it can use the same
+  xoshiro code I already created for generating white noise. Also, the algorithm
+  itself seems kind of neat and interesting.
+</p>
+<h2>Voss-McCartney Algorithm</h2>
+<p>
+  Pink noise can be made by adding together the output of several noise
+  generators. Each generator's output is updated at half the rate of the previous.
+</p>
+<p>
+  <pre>
+xxxxxxxxxxxxxxxxx
+x x x x x x x x x
+x   x   x   x   x
+x       x       x
+x               x
+  </pre>
+</p>
+<p>
+  <pre>
+    <code>
+void PinkNoise(float* pfBuffer, uint32_t uNumSamples, uint32_t uNumOctaves)
+{
+    const uint32_t kuMaxKey = ((uint32_t)1 << uNumOctaves) - 1); // uNumOctaves bits set
+    uint32_t uKey = 0;
+    RandomGenerator noise;
+    float fNoiseVals[uNumOctaves];
+
+    for(uint32_t uOctave = 0; uOctave < uNumOctaves; uOctave++)
+    {
+        fNoiseVals[uOctave] = noise.Generate() / uNumOctaves;
+    }
+
+    for(uint32_t uSampleIdx = 0; uSampleIdx < uNumSamples; uSampleIdx++)
+    {
+        float fSum = 0.0f;
+        uint32_t uPrevKey = uKey;
+
+        uKey++;
+        if(uKey > kuMaxKey)
+        {
+            uPrevKey = 0;
+            uKey = 1;
+        }
+
+        const uint32_t kuDiff = kuPrevKey ^ uKey; // Bits that have changed
+
+        for(uint32_t uOctave = 0; uOctave < uNumOctaves; uOctave++)
+        {
+            if(kuDiff & (1 << uOctave)
+            {
+                noiseVals[i] = noise.Generate() / uNumOctaves;
+            }
+
+            fSum += noiseVals[uOctave];
+        }
+
+        pfBuffer[uSampleIdx] = fSum;
+    }
+}
+    </code>
+  </pre>
+</p>
+<p>
+  The setting of the bottom <code>kuNumOctaves</code> bits
+  of <code>kuMaxKey</code> is
+  from <a href="https://stackoverflow.com/a/8128695">Stack Overflow</a>.
+</p>
+<p>
+  It is worth taking the time to make sense of the bit manipulation, and how
+  that is generating the update pattern for the noise. It helps to plot out the
+  binary numbers. The numbers 0 to 8 in binary representation are
+</p>
+<p>
+  <table>
+    <tr>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </table>
+</p>
+<p>
+  The XOR operation gives. NOTE THIS TABLE IS INCORRECT.
+</p>
+<p>
+  <table>
+    <tr>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </table>
+</p>
+<p>
+  By rearranging the updates the calculation load can be spread out and the
+  deviation between samples is reduced.
+</p>
+<p>
+  <pre>
+xxxxxxxxxxxxxxxxx
+x x x x x x x x x
+ x   x   x   x   
+   x       x     
+       x         
+  </pre>
+</p>
+<p>
+  
+</p>
+<hr />
+</body>
+</html>
