@@ -173,7 +173,7 @@ void PinkNoise(float* pfBuffer, uint32_t uNumSamples, uint32_t uNumOctaves)
   </table>
 </p>
 <p>
-  The XOR operation gives. NOTE THIS TABLE IS INCORRECT.
+  The XOR operation gives the update rates we are aiming for.
 </p>
 <p>
   <table>
@@ -189,7 +189,7 @@ void PinkNoise(float* pfBuffer, uint32_t uNumSamples, uint32_t uNumOctaves)
       <th>8</th>
     </tr>
     <tr>
-      <td>1</td>
+      <td>0</td>
       <td>1</td>
       <td>1</td>
       <td>1</td>
@@ -201,7 +201,6 @@ void PinkNoise(float* pfBuffer, uint32_t uNumSamples, uint32_t uNumOctaves)
     </tr>
     <tr>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
@@ -209,6 +208,7 @@ void PinkNoise(float* pfBuffer, uint32_t uNumSamples, uint32_t uNumOctaves)
       <td>0</td>
       <td>1</td>
       <td>0</td>
+      <td>1</td>
     </tr>
     <tr>
       <td>0</td>
@@ -235,8 +235,13 @@ void PinkNoise(float* pfBuffer, uint32_t uNumSamples, uint32_t uNumOctaves)
   </table>
 </p>
 <p>
-  By rearranging the updates the calculation load can be spread out and the
-  deviation between samples is reduced.
+  NOTE- explain the difference in the index wrapping. Bug in the version on the
+  website? My version is more correct?
+</p>
+<p>
+  By rearranging when the updates of the white noise generators happens, the
+  calculation load can be spread out and the deviation between samples is
+  reduced.
 </p>
 <p>
   <pre>
