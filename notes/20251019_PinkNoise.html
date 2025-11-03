@@ -235,8 +235,33 @@ void PinkNoise(float* pfBuffer, uint32_t uNumSamples, uint32_t uNumOctaves)
   </table>
 </p>
 <p>
-  NOTE- explain the difference in the index wrapping. Bug in the version on the
-  website? My version is more correct?
+  There is a difference in the way I am wrapping the <code>uKey</code>. The
+  original resets back to 0. I have changed the wrap to reset the key to 1, and
+  update the previous key to 0.
+</p>
+<p>
+  <pre>
+    <code>
+// Original
+key++;
+if(key > max_key)
+{
+    key = 0
+}
+
+// mj - Updated
+uKey++;
+if(uKey > kuMaxKey)
+{
+    uPrevKey = 0;
+    uKey = 1;
+}
+    </code>
+  </pre>
+</p>
+<p>
+  The update pattern for the noise generators uses an XOR with the previous
+  value. The original does an 0 XOR 8. My modification gives a 1 XOR 0.
 </p>
 <p>
   By rearranging when the updates of the white noise generators happens, the
