@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="../css/stylesheet.css" />
+  <link rel="stylesheet" href="../highlight/styles/mj.css">
+  <script src="../highlight/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <meta name="author" content="Mike Jones" />
+  <title>mj - Cross Correlation</title>
+</head>
+<body>
+
+<div class="mj_image">
+<p>
+  <a href="../index.html" width="120px" height="115px" alt="mj"><img src="../data/mj.png" alt="mj" width="120px" height="115px" /></a>
+</p>
+</div>
+
+<h1 class="title">Cross Correlation</h1>
+<small>20251118</small>
+<p>
+  DRAFT
+</p>
+<p>
+  Paul Bourke has some useful notes <a href="https://paulbourke.net/miscellaneous/correlate/">here</a>.
+</p>
+<p>
+  This is a useful test sequence to confirm cross correlation is working. It is
+  from
+  the <a href="https://numpy.org/doc/2.1/reference/generated/numpy.correlate.html">numpy.correlate
+    function documentation</a>.
+</p>
+<p>
+  { 0, 1, 0.5 } { 1, 2, 3 } = { 0.5, 2, 3.5, 3, 0 }
+</p>
+<p>
+  <pre>
+    <code>
+for(int nDelay = -nNumSamp + 1; nDelay < nNumSamp; nDelay++)
+{
+    float fSum = 0;
+
+    for(int j = 0; j < nNumSamp; j++)
+    {
+        int kIndex = nDelay + j;
+
+        if(kIndex < 0 || kIndex >= nNumSamp)
+        {
+            continue;
+        }
+
+        fSum += pfIn0[j] * pfIn1[kIndex];
+    }
+
+    pfOut[nDelay + nNumSamp] = fSum;
+}
+    </code>
+  </pre>
+</p>
+<hr />
+</body>
+</html>
