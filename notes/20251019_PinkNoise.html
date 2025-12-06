@@ -85,11 +85,11 @@ void PinkNoise(float* pfBuffer, uint32_t uNumSamples, uint32_t uNumOctaves)
             uKey = 1;
         }
 
-        const uint32_t kuDiff = kuPrevKey ^ uKey; // Bits that have changed
+        const uint32_t kuDiff = uPrevKey ^ uKey; // Bits that have changed
 
         for(uint32_t uOctave = 0; uOctave < uNumOctaves; uOctave++)
         {
-            if(kuDiff & (1 << uOctave)
+            if(kuDiff & (1 << uOctave))
             {
                 noiseVals[i] = noise.Generate() / uNumOctaves;
             }
@@ -102,11 +102,6 @@ void PinkNoise(float* pfBuffer, uint32_t uNumSamples, uint32_t uNumOctaves)
 }
     </code>
   </pre>
-</p>
-<p>
-  The setting of the bottom <code>kuNumOctaves</code> bits
-  of <code>kuMaxKey</code> is
-  from <a href="https://stackoverflow.com/a/8128695">Stack Overflow</a>.
 </p>
 <p>
   It is worth taking the time to make sense of the bit manipulation, and how
@@ -235,50 +230,22 @@ void PinkNoise(float* pfBuffer, uint32_t uNumSamples, uint32_t uNumOctaves)
   </table>
 </p>
 <p>
-  There is a difference in the way I am wrapping the <code>uKey</code>. The
-  original resets back to 0. I have changed the wrap to reset the key to 1, and
-  update the previous key to 0.
-</p>
-<p>
   <pre>
     <code>
-// Original
-key++;
-if(key > max_key)
-{
-    key = 0
-}
-
-// mj - Updated
-uKey++;
-if(uKey > kuMaxKey)
-{
-    uPrevKey = 0;
-    uKey = 1;
-}
+const uint32_t kuMaxKey = ((uint32_t)1 << uNumOctaves) - 1);
     </code>
   </pre>
+  This line is setting the lower <code>kuNumOctaves</code> bits
+  of <code>kuMaxKey</code>. The code is
+  from <a href="https://stackoverflow.com/a/8128695">Stack
+  Overflow</a>. <code>kuMaxKey</code> is used to loop the updates of the noise
+  generators when the lowest octave band is updated.
 </p>
 <p>
-  The update pattern for the noise generators uses an XOR with the previous
-  value. The original does an 0 XOR 8. My modification gives a 1 XOR 0.
-</p>
-<p>
-  By rearranging when the updates of the white noise generators happens, the
-  calculation load can be spread out and the deviation between samples is
-  reduced.
-</p>
-<p>
-  <pre>
-xxxxxxxxxxxxxxxxx
-x x x x x x x x x
- x   x   x   x   
-   x       x     
-       x         
-  </pre>
-</p>
-<p>
-  
+  There wrapping of <code>uKey</code> resets the key to 1, and updates the
+  previous key to 0. This is to ensure that the update of the noise generators
+  at each octave is correct. If key was reset to 0, some of the higher octaves
+  would miss an update due to the 0 XOR 8.
 </p>
 <hr />
 </body>
