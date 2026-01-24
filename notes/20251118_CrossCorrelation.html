@@ -21,9 +21,6 @@
 <h1 class="title">Cross Correlation</h1>
 <small>20251118</small>
 <p>
-  DRAFT
-</p>
-<p>
   Paul Bourke has some useful notes <a href="https://paulbourke.net/miscellaneous/correlate/">here</a>.
 </p>
 <p>
@@ -42,16 +39,16 @@ for(int nDelay = -nNumSamp + 1; nDelay < nNumSamp; nDelay++)
 {
     float fSum = 0;
 
-    for(int j = 0; j < nNumSamp; j++)
+    for(int i = 0; i < nNumSamp; i++)
     {
-        int kIndex = nDelay + j;
+        int j = nDelay + i;
 
-        if(kIndex < 0 || kIndex >= nNumSamp)
+        if(j < 0 || j >= nNumSamp)
         {
             continue;
         }
 
-        fSum += pfIn0[j] * pfIn1[kIndex];
+        fSum += pfIn0[i] * pfIn1[j];
     }
 
     pfOut[nDelay + nNumSamp] = fSum;
