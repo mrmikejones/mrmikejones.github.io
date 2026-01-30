@@ -8,7 +8,7 @@
   <script src="../highlight/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>
   <meta name="author" content="Mike Jones" />
-  <title>mj - git clone - fatal eof</title>
+  <title>mj</title>
 </head>
 <body>
 
@@ -19,7 +19,7 @@
 </div>
 
 <h1 class="title">git clone - fatal eof</h1>
-<small>20251014</small>
+<small>20260130</small>
 <p>
   This is a super annoying problem that pops up when I am cloning large
   repositories and my connection is a bit slow.
@@ -42,7 +42,7 @@
   gradually increasing the checkout depth.
   <pre>
     <code>
-      git clone --depth 1 $REPO_URI$
+      git clone --depth 1 --no-single-branch $REPO_URI$
       git fetch --deepen=32
       git fetch --deepen=32
       git fetch --deepen=32
@@ -52,6 +52,13 @@
       git fetch --unshallow
     </code>
   </pre>
+</p>
+<p>
+  It is important to include the <code>--no-single-branch</code>
+  arguement. Otherwise, git will only track the main branch and it's a fiddle to
+  get things setup to get all the remote branches when doing a <code>git
+  fetch</code>. <a href="https://stackoverflow.com/a/25941875">StackOverflow</a> has a
+  thread about the exact problem.
 </p>
 <hr />
 </body>
