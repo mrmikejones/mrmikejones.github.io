@@ -18,32 +18,27 @@
 </p>
 </div>
 
-<h1 class="title">Emacs - Projectile tr not recognized</h1>
-<small>20260226</small>
+<h1 class="title">Projectile - MSBuild Compile Command</h1>
+<small>20260305</small>
 <p>
-  <samp>
-    'tr' is not recognized as an internal or external command,
-    operable program or batch file.
-  </samp>
+  By default Projectile will recognise a Visual Studio sln file as a dotnet
+  solution. To save time typing out the correct compilation command for a C/C++
+  solution add a variable to .dir-locals.el
 </p>
 <p>
-  The Windows install of Git includes <samp>tr.exe<samp> in <samp>C:\Program Files\Git\usr\bin</samp>
-</p>
-<p>
-  Either
-  <ol>
-    <li>Add <samp>C:\Program Files\Git\usr\bin</samp> to <samp>%PATH%</samp></li>
-    <li>Copy tr.exe into a folder and add that folder
-      to <samp>%PATH%</samp></li>
-  </ol>
-</p>
-<p>
-  I prefer 2. I create a folder <samp>C:\bin</samp> to contain these types of
-  tools and add the folder to <samp>%PATH%</samp>.
+  <pre>
+    <kbd>
+M-x add-dir-local-variable
+projectile-project-compilation-cmd
+msbuild %SOLUTION_FILE% -m -p:Platform=%PLAT%;Configuration=Debug
+    </kbd>
+  </pre>
 </p>
 <hr />
 <p>
-  <li><a href="../tags/emacs.html">#emacs</a></li>
+  <ul>
+    <li><a href="../tags/emacs.html">#emacs</a></li>
+  </ul>
 </p>
 </body>
 </html>
