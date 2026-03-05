@@ -41,7 +41,7 @@
   of <a href="https://git-scm.com/docs/git-fetch">git-fetch</a> commands
   gradually increasing the checkout depth.
   <pre>
-    <code>
+    <kbd>
       git clone --depth 1 --no-single-branch $REPO_URI$
       git fetch --deepen=32
       git fetch --deepen=32
@@ -50,14 +50,14 @@
       # etc. until an attempt at unshallow succeeds.
       # experiment with the depth value (32/64/128/256/etc).
       git fetch --unshallow
-    </code>
+    </kb>
   </pre>
 </p>
 <p>
-  It is important to include the <code>--no-single-branch</code>
+  It is important to include the <kbd>--no-single-branch</kbd>
   arguement. Otherwise, git will only track the main branch and it's a fiddle to
-  get things setup to get all the remote branches when doing a <code>git
-  fetch</code>. <a href="https://stackoverflow.com/a/25941875">StackOverflow</a> has a
+  get things setup to get all the remote branches when doing a <kbd>git
+  fetch</kbd>. <a href="https://stackoverflow.com/a/25941875">StackOverflow</a> has a
   thread about the exact problem.
 </p>
 <hr />
