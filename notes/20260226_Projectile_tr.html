@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="../css/stylesheet.css" />
+  <link rel="stylesheet" href="../highlight/styles/mj.css">
+  <script src="../highlight/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <meta name="author" content="Mike Jones" />
+  <title>mj</title>
+</head>
+<body>
+
+<div class="mj_image">
+<p>
+  <a href="../index.html" width="120px" height="115px" alt="mj"><img src="../data/mj.png" alt="mj" width="120px" height="115px" /></a>
+</p>
+</div>
+
+<h1 class="title">Emacs - Projectile tr not recognized</h1>
+<small>20260226</small>
+<p>
+  <samp>
+    'tr' is not recognized as an internal or external command,
+    operable program or batch file.
+  </samp>
+</p>
+<p>
+  The Windows install of Git includes tr.exe in <samp>C:\Program Files\Git\usr\bin</samp>
+</p>
+<p>
+  Either
+  <ol>
+    <li>Add <samp>C:\Program Files\Git\usr\bin</samp> to <samp>%PATH%</samp></li>
+    <li>Copy tr.exe into a folder and add that folder
+      to <samp>%PATH%</samp></li>
+  </ol>
+</p>
+<p>
+  I prefer 2. I create a folder <samp>C:\bin</samp> to contain these types of
+  tools and add the folder to <samp>%PATH%</samp>.
+</p>
+<hr />
+</body>
+</html>
