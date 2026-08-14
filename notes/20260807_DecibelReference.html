@@ -8,7 +8,7 @@
   <script src="../highlight/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>
   <meta name="author" content="Mike Jones" />
-  <title>mj - Cross Correlation</title>
+  <title>mj</title>
 </head>
 <body>
 
@@ -18,43 +18,54 @@
 </p>
 </div>
 
-<h1 class="title">Cross Correlation</h1>
-<small>20260124</small>
+<h1 class="title">Decibel Reference</h1>
+<small>20260807</small>
 <p>
-  Paul Bourke has some useful notes <a href="https://paulbourke.net/miscellaneous/correlate/">here</a>.
+  Reference for converting between decibels and linear gain.
 </p>
-<p>
-  This is a useful test sequence to confirm cross correlation is working. It is
-  from
-  the <a href="https://numpy.org/doc/2.1/reference/generated/numpy.correlate.html">numpy.correlate
-    function documentation</a>.
-</p>
-<p>
-  { 0, 1, 0.5 } { 1, 2, 3 } = { 0.5, 2, 3.5, 3, 0 }
-</p>
+<h2>Linear to Decibel</h2>
 <p>
   <pre>
     <code>
-for(int nDelay = -nNumSamp + 1; nDelay < nNumSamp; nDelay++)
-{
-    float fSum = 0;
-
-    for(int i = 0; i < nNumSamp; i++)
-    {
-        int j = nDelay + i;
-
-        if(j < 0 || j >= nNumSamp)
-        {
-            continue;
-        }
-
-        fSum += pfIn0[i] * pfIn1[j];
-    }
-
-    pfOut[nDelay + nNumSamp] = fSum;
-}
+20.0f * log10(val);
     </code>
   </pre>
+</p>
+<h2>Decibel to linear</h2>
+<p>
+  <pre>
+    <code>
+powf(10.0f, val / 20.0f);
+    </code>
+  </pre>
+</p>
+<h2>Useful values</h2>
+<p>
+  <table>
+    <tr>
+      <th>Linear</th>
+      <th>Decibel</th>
+    </tr>
+    <tr>
+      <td>0.5</td>
+      <td>-6dB</td>
+      <td>Half gain</td>
+    </tr>
+    <tr>
+      <td>0.25</td>
+      <td>-12dB</td>
+      <td>Quarter gain</td>
+    <tr>
+      <td>0.000015</td>
+      <td>-96.0dB</td>
+      <td>16bit audio silence</td>
+    </tr>
+    <tr>
+      <td>1.25892541E-38</td>
+      <td>-758dB</td>
+      <td>32bit audio silence
+    </tr>
+  </table>
 </p>
 <hr />
 <p style="font-style: italic;">

@@ -9,10 +9,18 @@ body {
 
 h1.title {
     margin-bottom: 0.0em;
+    text-decoration: underline #c93756;
 }
 
+h2 {
+    text-decoration: underline #6b9362;
+}
+
+.mj_emphasis {
+    text-decoration: underline #317589;
+
 blockquote {
-  font-style: italic;
+    font-style: italic;
 }
 
 .mj_image { text-align: center; }
